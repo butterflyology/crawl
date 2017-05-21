@@ -4,10 +4,16 @@ author: "Chris Hamm"
 date: "`r format(Sys.Date())`"
 categories: ["R"]
 tags: ["reproducibility", "bar crawl", "R"]
+output:
+  blogdown::html_page:
+    toc: true
+    fig_width: 6
+    dev: "svg"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
+options(servr.daemon = TRUE, blogdown.author = "Chris Hamm")
 ```
 
 # R Markdown
