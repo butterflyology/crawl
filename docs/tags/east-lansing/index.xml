@@ -6,20 +6,18 @@
     <description>Recent content in East Lansing on A reproducible bar crawl</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 May 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 May 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/east-lansing/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Reproducible Bar Crawl</title>
-      <link>/2017/05/21/reproducible-bar-crawl/</link>
-      <pubDate>Sun, 21 May 2017 00:00:00 +0000</pubDate>
+      <link>/2017/05/22/reproducible-bar-crawl/</link>
+      <pubDate>Mon, 22 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/05/21/reproducible-bar-crawl/</guid>
-      <description>Preliminaries Get the Maps Must visit: Should visit: Late night:    I wanted to do two things:
-Learn a bit of blogdown Write up a list of amazing places for Auriel Fournier to checkout when she visits East Lansing, Michigan and the incomparable Michigan State University. Go Green!  Behold, the Reproducible Bar Crawl in all its pedantry.
-Preliminaries Let’s load the packages we will need for our post.</description>
+      <guid>/2017/05/22/reproducible-bar-crawl/</guid>
+      <description>Preamble Preliminaries Load packages Overview map  Places to go Must visit Should visit Late night Not recommended  Make a map Make a tibble geocode Full map Downtown map    Preamble The 2017 joint meeting of the American Ornithological Society and the Society of Canadian Ornithologists (ASO-SSO) is being held in East Lansing, Michigan at Michigan State University, Go Green! this summer!. When I heard my friend Auriel Fournier, aka @RallidaeRule, was going to attend I felt compelled to provide a list of awesome places she should check out.</description>
     </item>
     
   </channel>

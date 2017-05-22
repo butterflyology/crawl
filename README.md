@@ -7,3 +7,4 @@ List of major commits:
 
 1. 2017-05-21 - Initial commit 
 1. 2017-05-21 - Second commit had a fully working page.  
+1. 2017-05-22 - Added places to avoid, color scale.
