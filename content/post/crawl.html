@@ -1,5 +1,16 @@
-<!-- BLOGDOWN-HEAD -->
-<!-- /BLOGDOWN-HEAD -->
+---
+title: "Reproducible Bar Crawl"
+author: "Chris Hamm"
+date: "2017-05-22"
+categories: ["R"]
+tags: ["reproducibility", "bar crawl", "Michigan State University", "East Lansing"]
+output:
+  blogdown::html_page:
+    toc : TRUE
+    toc_depth: 3
+    dev: "svg"
+---
+
 
 <div id="TOC">
 <ul>
@@ -48,7 +59,7 @@ options(dplyr.width = Inf)</code></pre>
 <pre class="r"><code>East_Lansing_coords &lt;- c(lon = -84.4826065, lat = 42.734321)
 EL_city &lt;- get_map(location = East_Lansing_coords, source = &quot;google&quot;, maptype = &quot;roadmap&quot;, zoom = 15)
 ggmap(EL_city)</code></pre>
-<p><img src="crawl_files/figure-html/get_maps-1.svg" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/crawl_files/figure-html/get_maps-1.svg" width="672" style="display: block; margin: auto;" /></p>
 <p>That is one beautiful city. <font color = "4A635D"><strong>Go Green!</strong></font></p>
 <p>Here are the places I think that you should visit. This list is not complete, just my opinion, and in no particular order apart although I consider this an “ordered factor” list:</p>
 </div>
@@ -134,7 +145,7 @@ lon_lat$rating &lt;- Places$rating</code></pre>
 EL_map &lt;-  get_map(location = Full_map, zoom = 12, source = &quot;google&quot;)</code></pre>
 <p>Let’s select a color scale based on the Inquisitor from <em>Star Wars Rebels</em> using the <a href="https://github.com/butterflyology/spaceMovie"><code>spaceMovie</code></a> package.</p>
 <pre class="r"><code>SW_palette(&quot;Inquisitor&quot;)</code></pre>
-<p><img src="crawl_files/figure-html/Inquisitor-1.svg" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/crawl_files/figure-html/Inquisitor-1.svg" width="672" style="display: block; margin: auto;" /></p>
 <p>We’ll use the black for low ratings and the red for high.</p>
 <pre class="r"><code>Places.plot &lt;- ggmap(EL_map) +
   scale_color_gradient(&quot;Rating&quot;, low = SW_palette(&quot;Inquisitor&quot;)[3], high = SW_palette(&quot;Inquisitor&quot;)[1]) + 
@@ -143,7 +154,7 @@ EL_map &lt;-  get_map(location = Full_map, zoom = 12, source = &quot;google&quot
   ylab(&quot;Latitude&quot;)
 
 print(Places.plot)</code></pre>
-<p><img src="crawl_files/figure-html/full_map2-1.svg" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/crawl_files/figure-html/full_map2-1.svg" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="downtown-map" class="section level3">
 <h3>Downtown map</h3>
@@ -159,9 +170,10 @@ DT.plot &lt;- ggmap(DT_map) +
   xlab(&quot;Longitude&quot;) +
   ylab(&quot;Latitude&quot;)
 print(DT.plot)</code></pre>
-<p><img src="crawl_files/figure-html/downtown-1.svg" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/crawl_files/figure-html/downtown-1.svg" width="672" style="display: block; margin: auto;" /></p>
 <p>Right now the coordinate transformation from <code>geocode</code> is not great at <code>zoom = 15</code>. Oh well. You have the vital information and are smart so I am sure you can find these places.</p>
 <p>A note to our Canadian colleagues visiting. There is a Tim Horton’s in East Lansing. You can get Molson or Labatt Blue at most shops and some places have it on tap.</p>
+<p><em>ProTip</em> - Your meeting is at the Kellogg Center. The bar will run out of good beer during your reception. You can walk around the hotel with a beer purchased from the hotel. There is a good bar at the restaurant that serves good beer (often less expensive than the reception). Problem solved.</p>
 <p>I need to say that I had so much fun making this post for you. You all should invite me out so I can relive grad school memories (minus the heartbreak, stress, and insane work hours). <font color = "4A635D"><strong>Go Green!</strong></font></p>
 </div>
 </div>
