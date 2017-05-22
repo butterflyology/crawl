@@ -2,7 +2,7 @@ baseurl = "/"
 relativeurls = true
 languageCode = "en-us"
 title = "A reproducible bar crawl"
-theme = "hugo-lithium-theme"
+theme = "hugo-theme-bootstrap4-blog"
 googleAnalytics = ""
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
@@ -22,7 +22,7 @@ ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 publishDir = "docs"
 
 [params]
-    description = "A website built through Hugo and blogdown."
+    description = "A website built through `Hugo` and `blogdown`."
 
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"

@@ -5,4 +5,5 @@ This repository serves two purposes:
 
 List of major commits: 
 
-* 2017-05-21 - Initial commit 
+1. 2017-05-21 - Initial commit 
+1. 2017-05-21 - Second commit had a fully working page.  

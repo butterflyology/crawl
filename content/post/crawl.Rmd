@@ -1,0 +1,129 @@
+---
+title: "Reproducible Bar Crawl"
+author: "Chris Hamm"
+date: "`r format(Sys.Date())`"
+categories: ["R"]
+tags: ["reproducibility", "bar crawl", "Michigan State University", "East Lansing"]
+output:
+  blogdown::html_page:
+    toc : TRUE
+    dev: "svg"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, fig.align = "center")
+options(servr.daemon = TRUE, blogdown.author = "Chris Hamm")
+```
+
+I wanted to do two things: 
+
+1. Learn a bit of `blogdown`
+1. Write up a list of amazing places for Auriel Fournier to checkout when she visits East Lansing, Michigan and the incomparable <font color = "4A635D">Michigan State University. **Go Green!**</font>
+
+Behold, the **Reproducible Bar Crawl** in all its pedantry. 
+
+## Preliminaries
+
+Let's load the packages we will need for our post.
+
+```{r Preliminaries}
+library("ggmap")
+library("tidyverse")
+options(dplyr.width = Inf)
+```
+
+### Get the Maps
+
+```{r get_maps}
+East_Lansing_coords <- c(lon = -84.4826065, lat = 42.734321)
+EL_city <- get_map(location = East_Lansing_coords, source = "google", maptype = "roadmap", zoom = 15)
+ggmap(EL_city)
+```
+
+That is one beautiful city. <font color = "4A635D">**Go Green!**</font>
+
+Here are the places I think that you should visit, in no particular order:
+
+### Must visit:
+
+* [Crunchy's](http://crunchyseastlansing.com/) - It looks like a hole in the wall. It is a hole in the wall, but one with a great beer selection and really solid food. I recommend a pizza for sharing (square pizza served on a cafeteria tray) or a Chruncy burger (I like a pertzel bun with a side of tots). They always have a great selection of beers on tap, with Michigan beers highlighted. If visiting on a Friday or Saturday, get here early because there will be a line out the door come night. *Protip* **don't** get a bucket of beer. It seems like a good idea at the tie but you just end up with 1/2 a gallon of warm american adjunct lager. 
+* [The Peanut Barrel](http://www.peanutbarrel.com/) - Do yourself a favor; go there during a sunny day, sit out on the patio, order yourself a "Papa Joe's Cheeseburger" and a Long Island. So good. You will want to take a nap afterward and that is totally OK. If the patio is full you should add your name to the list because the patio is amazing and sitting inside seems lame in comparison. 
+* [Soup Spoon](http://soupspooncafe.com/) -  Get yourself a Lyft and head into Lansing towards the Capital to treat yourself. Come here for dinner and make a reservation to ensure you get a spot. If you want to live dangerously you can order the full menu at the bar. The food here is amazing. I mean that with all sincerity, amazing. They also have an excellent selection of Michigan beer. The specials are great and there is usually a naan pizza that will blow your mind. For the regular menu items, I highly recommend the Kobe-Wagyu burger. Wow. Just realized most of my food recommendations are for burgers. They also have a really good breakfast. 
+
+### Should visit:
+
+* [Hop Cat]() - The 2nd member of what is now a chain of craft beer houses that has spread to ~11 locations. The original place in Grand Rapids is cool and you can buy a pint glass for $10. The East Lansing location is large with multiple bars spread across each level. They have a very impressive beer selectio with a lot of the rare stuff that NPR listeners will love. 
+* [Dusty's Tap Room](http://dustyscellar.com/) - If you were willing to head west to visit the Soup Spoon you should also consider heading east to visit Dusty's. You want the **Tap Room**, not the Cellar. The Tap Room is the nice bar with excellent pub food right next to the Cellar. Excellent selection of Michigan beers and very good pub style food. I highly recommend paring a Jalepeno Stuffed Pretzel with a nice IPA
+* [Maru](http://www.marurestaurant.com/okemos/) - Want awesome sushi? Go here. Located east of campus in Okemos, MI you will find this gem of a sushi place. You wouldn't have a strong prior on finding good sushi in Michigan, but this is really good. Try the *sexy bacon* roll because it has smoked bacon in it and who doesn't love bacon?
+* [Pizza House](http://www.pizzahouse.com/GetContent.aspx?t=1&c=Pizza_In_East_Lansing_Content&l=EL) - Seriously good pizza and a solid selection of craft beer. Their "Chicago" style pizza is heavy duty but really good. You won't need to eat for another week if you have a slice of that. Their standard pizza is really good too.
+* [Sansu](http://sansu-sushi.com/) - Solid sushi but not as "high-end" as Maru. This place has the best lunch special on the planet. Two rolls plus miso and salad for ~$10 can't be beat.
+* [Sindhu](http://sindhurestaurant.com/) - Really good Indian food that has a nice buffet for lunch. They make some of the best naan bread I have experienced and now you can order their food for delivery. Lots of vegetarian options. 
+* [Sultan's](http://www.sultansmediterranean.com/) -  Nice Mediterranean cuisine with lots of tasty dishes and you get free bread with you meal that comes out of the oven seconds before landing on your table. Lots of vegetarian and vegan options here. 
+
+### Late night:
+
+* [Menna's Joint](https://www.mennasjoint.com/) - The website was not workign when I wrote this. They sell these things called "dubs" which is basically a burrito with non-traditional ingredients.
+* [Insomnia Cookies](https://insomniacookies.com/locations/store/15) - Up late and need cookies but don't want to walk/drive/bike to get them? Insomnia will deliver really good cookies to you. A chain but really good cookies.
+
+Now the fun part, code!
+
+First I create a table with the name of the establishment, my rating on a 1-10 scale, and the address. 
+
+```{r Places}
+Places <- tribble(~Establishment, ~rating, ~address,
+  "Soup Spoon", 13, "1419 E Michigan Ave, Lansing, MI 48912", 
+  "Chrunchy's", 12, "254 E Grand River Ave, East Lansing, MI 48823",
+  "Peanut Barrel", 11, "521 E Grand River Ave, East Lansing, MI 48823",
+  "Hop Cat", 9, "300 Grove St, East Lansing, MI 48823",
+  "Insomnia", 8, "603 E Grand River Ave, East Lansing, MI 48823",
+  "Menna's", 7, "115 Albert Ave East Lansing, MI 48823",
+  "Dusty's", 8, " 1857 W Grand River Ave, Okemos, MI 48864",
+  "Maru", 8, "5100 Marsh Rd, Okemos, MI 48864", 
+  "Pizza House", 7, "4790 S Hagadorn Rd, East Lansing, MI 48823",
+  "Sindhu", 8, "4790 S Hagadorn Rd, East Lansing, MI 48823",
+  "Sultan's", 7, "4790 S Hagadorn Rd, East Lansing, MI 48823",
+  "Woody's Oasis", 8, "1050 Trowbridge Rd, East Lansing, MI 48823"
+)
+```
+
+Next, using the handy `geocode` function from `ggmap` I extract the `latitude` and `longitude` from the data.
+
+```{r convert}
+lon_lat <- geocode(Places$address)
+lon_lat$rating <- Places$rating
+```
+
+Now I'll create a map with all the placed plotted.
+
+```{r full_map}
+Full_map <-  c(mean(lon_lat$lon), mean(lon_lat$lat))
+
+EL_map <-  get_map(location = Full_map, zoom = 12, source = "google")
+
+Places.plot <- ggmap(EL_map)
+Places.plot <- Places.plot + 
+  geom_point(data = lon_lat, aes(x = lon, y = lat, color = rating), size = 3) +
+  xlab("Longitude") +
+  ylab("Latitude")
+print(Places.plot)
+```
+
+Now just downtown East Lansing locations (all easily walkable from campus.
+
+```{r downtown}
+downtown <- lon_lat[2:6, ]
+downtown_map <-  c(mean(downtown$lon), mean(downtown$lat))
+
+DT_map <-  get_map(location = downtown_map, zoom = 15, source = "google")
+
+DT.plot <- ggmap(DT_map)
+DT.plot <- DT.plot + 
+  geom_point(data = downtown, aes(x = lon, y = lat, color = rating), size = 3) +
+  xlab("Longitude") +
+  ylab("Latitude")
+print(DT.plot)
+```
+
+Right now the coordinate transformation from `geocode` is not great at `zoom = 15`. Oh well. You have the vital information and are smart so I am sure you can find these places.
+
+I need to say that I had so much fun making this post for you. You all should invite me out so I can relive grad school memories (minus the heartbreak, stress, and insane work hours). <font color = "4A635D">**Go Green!**</font>
